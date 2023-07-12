@@ -20,7 +20,7 @@ footer {
     gap: 10px;
 }
 
-body, footer, button {
+body, footer, button, .display-result {
     font-family: "Nanum Myeongjo";
 }
 
@@ -45,9 +45,24 @@ body, footer, button {
     height: 120px;
     margin-bottom: 10px;
     grid-column: span 4;
+    text-align: right;
     border-radius: 8px;
     background-color: rgb(216, 213, 213);
     border: 0.5px solid black;
+    color: black;
+}
+
+.display-input {
+    padding: 10px;
+    height: 80px;
+    font-size: 48px;
+}
+
+.display-operation {
+    padding: 10px;
+    height: 40px;
+    font-size: 24px;
+    bottom: 0;
 }
 
 .grid-container {
