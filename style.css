@@ -17,6 +17,7 @@ footer {
     margin-top: auto;
     height: 60px;
     background-color: #0B666A;
+    gap: 10px;
 }
 
 body, footer, button {
