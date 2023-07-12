@@ -41,8 +41,11 @@ body, footer, button, .display-result {
     color: beige;
 }
 
-.display-result {
-    height: 120px;
+.display-input {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100px;
     margin-bottom: 10px;
     grid-column: span 4;
     text-align: right;
@@ -50,19 +53,8 @@ body, footer, button, .display-result {
     background-color: rgb(216, 213, 213);
     border: 0.5px solid black;
     color: black;
-}
-
-.display-input {
+    font-size: 56px;
     padding: 10px;
-    height: 80px;
-    font-size: 48px;
-}
-
-.display-operation {
-    padding: 10px;
-    height: 40px;
-    font-size: 24px;
-    bottom: 0;
 }
 
 .grid-container {

@@ -6,7 +6,6 @@ let result = null;
 const buttonsNum = document.querySelectorAll("[data-number]");
 const operatorBtn = document.querySelectorAll("[data-operator]");
 const displayInput = document.querySelector(".display-input");
-const displayOperation = document.querySelector(".display-operation"); 
 const clearBtn = document.getElementById("clear");
 const equalBtn = document.querySelector(".equal");
 
