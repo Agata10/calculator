@@ -19,15 +19,21 @@ function divide(firstNum,secondNum) {
 }
 
 function operate(firstNum,operator,secondNum) {
-    if(operator == "+") {
-       return add(firstNum,secondNum);
-    } else if(operator == "-") {
-        return subtract(firstNum,secondNum);
-    } else if(operator == "*") {
-       return multiply(firstNum,secondNum);
-    } else {
-       return divide(firstNum,secondNum)
+    switch (operator) {
+        case "+":
+            return add(firstNum,secondNum);    
+            break;
+        case "-":
+            return subtract(firstNum,secondNum);
+            break;
+        case "*":
+            return multiply(firstNum,secondNum);
+            break;
+        case "/":
+            return divide(firstNum,secondNum);
+            break;
     }
 }
 
 console.log(operate(firstNum,operator,secondNum));
+
