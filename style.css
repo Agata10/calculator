@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    height: 60px;
+    background-color: #0B666A;
+}
+
+body, footer, button {
+    font-family: "Nanum Myeongjo";
+}
+
+.container {
+    height: calc(100vh - 60px);
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator {
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #545B77;
+    color: beige;
+}
+
+.display-result {
+    height: 120px;
+    margin-bottom: 10px;
+    grid-column: span 4;
+    border-radius: 8px;
+    background-color: rgb(216, 213, 213);
+    border: 0.5px solid black;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;    
+}
+
+.span-2 {
+   grid-column: span 2;
+}
+
+button {
+    height: 60px;
+    font-size: 24px;
+    border: 0.5px solid black;
+    box-shadow: 0.8px 0.6px 0.5px black;
+    border-radius: 8px;
+}
+
+.equal {
+    background-color: #1c8d89f1;
+}
+
+#clear {
+    background-color: #0B666A;
+}
+
+#backspace {
+    background-color: #2E8A99;
+}
+
+.equal,
+#clear,
+#backspace {
+    color: rgb(235, 230, 230);
+}
+
+button:hover {
+   opacity: 0.8;
+}
