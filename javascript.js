@@ -10,6 +10,7 @@ const operatorBtns = document.querySelectorAll("[data-operator]");
 const displayInput = document.querySelector(".display-input");
 const displayH = document.querySelector(".display-result");
 const clearBtn = document.getElementById("clear");
+const backspaceBtn = document.getElementById("backspace");
 const equalBtn = document.querySelector(".equal");
 
 
@@ -21,6 +22,18 @@ function clear() {
     currentOperator = null;
     result = null;
     equalClick = false;
+}
+
+function deleteDigit() {
+       displayInput.textContent = displayInput.textContent
+       .toString()
+       .slice(0,-1);
+
+       if(currentOperator == null){         /*attach new value to numbers*/
+        firstNum = displayInput.textContent;
+        } else {
+        secondNum = displayInput.textContent;
+        } 
 }
 
 function displayHistory(firstNum,operator,secondNum){
@@ -115,14 +128,13 @@ function calculator() {
 
     operatorBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            
             if(firstNum != null){ 
                 if(secondNum != null) { /*evaulate when the operator is pressed*/
                 evaluate();
                 }                        /*clean screen for next number before equal button */
                 currentOperator = btn.innerText.toString();  
                 displayHistory(firstNum,currentOperator,secondNum);
-                resetDisplay(); 
+                resetDisplay();
             }             
 
         });
@@ -136,6 +148,8 @@ function calculator() {
     })
     
     clearBtn.addEventListener("click", clear);
+
+    backspaceBtn.addEventListener("click", deleteDigit);
 
 }
 
