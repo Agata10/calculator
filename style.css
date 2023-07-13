@@ -41,19 +41,27 @@ body, footer, button, .display-result {
     color: beige;
 }
 
-.display-input {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    height: 100px;
+.display {
+    height: 120px;
     margin-bottom: 10px;
     grid-column: span 4;
-    text-align: right;
     border-radius: 8px;
     background-color: rgb(216, 213, 213);
     border: 0.5px solid black;
-    color: black;
-    font-size: 56px;
+    color: black;  
+}
+
+.display-result {
+    text-align: left;
+    height: 40px;
+    font-size: 26px;
+    padding: 10px;
+}
+
+.display-input {
+    text-align: right;
+    height: 80px;
+    font-size: 48px;
     padding: 10px;
 }
 

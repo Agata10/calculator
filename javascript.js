@@ -6,18 +6,30 @@ let result = null;
 const buttonsNum = document.querySelectorAll("[data-number]");
 const operatorBtn = document.querySelectorAll("[data-operator]");
 const displayInput = document.querySelector(".display-input");
+const displayR = document.querySelector(".display-result");
 const clearBtn = document.getElementById("clear");
 const equalBtn = document.querySelector(".equal");
 
 
-
 function clear() {
-    displayInput.textContent = "0";
-    displayOperation.textContent = " ";
+    displayInput.textContent = "";
+    displayR.textContent = "";
     firstNum = null;
     secondNum = null;
     operator = null;
     result = null;
+}
+
+function displayResult(firstNum,operator,secondNum){
+    displayR.textContent = firstNum + operator + secondNum + " =";
+}
+
+function resetInput() {
+    displayInput.textContent = "";
+}
+
+function round(number) {
+   return Math.round(number * 100) / 100;
 }
 
 function add(firstNum,secondNum) {
@@ -56,31 +68,39 @@ function operate(firstNum,operator,secondNum) {
 }
 
 function calculator() {  
+
    
 buttonsNum.forEach(button => {
     button.addEventListener("click", () => {
-        displayInput.textContent = button.innerText;
-        if(operator == null) {
-            firstNum = button.innerText;
+
+        if(operator == null){
+            displayInput.textContent += button.innerText;
+            firstNum = Number(displayInput.textContent);
         } else {
-            nextNum = button.innerText;
-            console.log(firstNum + " " + nextNum);
+            displayInput.textContent += button.innerText;
+            secondNum = Number(displayInput.textContent);
         }
+
+        console.log(firstNum + " " + secondNum);
     });
    });
 
    operatorBtn.forEach(opr => {
     opr.addEventListener("click", () => {
         operator = opr.innerText.toString();
+        displayR.textContent = "";
+        displayInput.textContent = "";
     });
     });
 
     equalBtn.addEventListener("click", () => {
-        if(firstNum != null && nextNum != null) {     
-            result = operate(firstNum,operator,nextNum);
-            displayInput.textContent = Math.round(result * 100) / 100;
-            firstNum = Math.round(result * 100) / 100;
-            
+        displayInput.textContent = ""; 
+
+        if(firstNum != null && secondNum != null) {    
+            result = operate(firstNum,operator,secondNum);
+            displayInput.textContent = round(result);
+            displayResult(firstNum,operator,secondNum);
+            firstNum = round(result);
         }
     });
 
