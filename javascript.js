@@ -1,30 +1,46 @@
 let firstNum = null;
 let secondNum = null;
-let operator = null;
+let currentOperator = null;
 let result = null;
+let equalClick = false;
 
-const buttonsNum = document.querySelectorAll("[data-number]");
-const operatorBtn = document.querySelectorAll("[data-operator]");
+
+const numberBtns = document.querySelectorAll("[data-number]");
+const operatorBtns = document.querySelectorAll("[data-operator]");
 const displayInput = document.querySelector(".display-input");
-const displayR = document.querySelector(".display-result");
+const displayH = document.querySelector(".display-result");
 const clearBtn = document.getElementById("clear");
 const equalBtn = document.querySelector(".equal");
 
 
 function clear() {
     displayInput.textContent = "";
-    displayR.textContent = "";
+    displayH.textContent = "";
     firstNum = null;
     secondNum = null;
-    operator = null;
+    currentOperator = null;
     result = null;
+    equalClick = false;
 }
 
-function displayResult(firstNum,operator,secondNum){
-    displayR.textContent = firstNum + operator + secondNum + " =";
+function displayHistory(firstNum,operator,secondNum){
+    if(operator == "*"){
+        operator = "×";
+    }
+    if(operator == "/") {
+        operator = "÷";
+    } 
+    if(secondNum == null){
+        secondNum = "";
+    }
+    displayH.textContent = firstNum + operator + secondNum;
 }
 
-function resetInput() {
+function display(number){
+    displayInput.textContent += number;
+}
+
+function resetDisplay(){
     displayInput.textContent = "";
 }
 
@@ -67,44 +83,59 @@ function operate(firstNum,operator,secondNum) {
     }
 }
 
+function evaluate() {
+
+    result = operate(firstNum,currentOperator,secondNum);
+    displayHistory(firstNum,currentOperator,secondNum + "=");
+    resetDisplay();
+    display(round(result));
+    firstNum = round(result);
+    secondNum = null;
+    currentOperator = null;
+}
+
 function calculator() {  
+    
+    numberBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
 
-   
-buttonsNum.forEach(button => {
-    button.addEventListener("click", () => {
+            if(equalBtn == true) { /* clean screen after clicking eqaul button for first number */
+                resetDisplay();
+            }
 
-        if(operator == null){
-            displayInput.textContent += button.innerText;
-            firstNum = Number(displayInput.textContent);
-        } else {
-            displayInput.textContent += button.innerText;
-            secondNum = Number(displayInput.textContent);
-        }
-
-        console.log(firstNum + " " + secondNum);
+            display(btn.innerText);
+           
+            if(currentOperator == null){
+            firstNum = displayInput.textContent;
+            } else {
+            secondNum = displayInput.textContent;
+            }  
+        });
     });
-   });
 
-   operatorBtn.forEach(opr => {
-    opr.addEventListener("click", () => {
-        operator = opr.innerText.toString();
-        displayR.textContent = "";
-        displayInput.textContent = "";
-    });
+    operatorBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            
+            if(firstNum != null){ 
+                if(secondNum != null) { /*evaulate when the operator is pressed*/
+                evaluate();
+                }                        /*clean screen for next number before equal button */
+                currentOperator = btn.innerText.toString();  
+                displayHistory(firstNum,currentOperator,secondNum);
+                resetDisplay(); 
+            }             
+
+        });
     });
 
     equalBtn.addEventListener("click", () => {
-        displayInput.textContent = ""; 
 
-        if(firstNum != null && secondNum != null) {    
-            result = operate(firstNum,operator,secondNum);
-            displayInput.textContent = round(result);
-            displayResult(firstNum,operator,secondNum);
-            firstNum = round(result);
+        if(firstNum != null && currentOperator != null && secondNum != null){
+            evaluate();
         }
-    });
-
-clearBtn.addEventListener("click", clear);
+    })
+    
+    clearBtn.addEventListener("click", clear);
 
 }
 
