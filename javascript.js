@@ -45,7 +45,7 @@ function displayHistory(firstNum,operator,secondNum){
     if(operator == "*"){
         operator = "×";
     }
-    if(operator == "/") {
+    if(operator == "/"){
         operator = "÷";
     } 
     if(secondNum == null){
@@ -106,6 +106,7 @@ function operate(firstNum,operator,secondNum) {
 
 function evaluate() {
 
+    if(firstNum != null && currentOperator != null && secondNum != null){
     result = operate(firstNum,currentOperator,secondNum);
     displayHistory(firstNum,currentOperator,secondNum + "=");
     resetDisplay();
@@ -113,6 +114,40 @@ function evaluate() {
     firstNum = round(result);
     secondNum = null;
     currentOperator = null;
+    }
+}
+
+function calculateUsingKeyboard() {
+
+    window.addEventListener("keydown", function(e) {
+        if(e.key >=0 && e.key < 10) {
+
+            display(e.key);
+
+            if(currentOperator == null){
+                firstNum = displayInput.textContent;
+                } else {
+                secondNum = displayInput.textContent;
+                } 
+
+        } else if(e.key == "Backspace") {
+            deleteDigit();
+
+        } else if(e.key == "Escape") {
+            clear();
+
+        } else if(e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
+ 
+                evaluate(); /*evaulate when the operator is pressed*/
+                                      
+                currentOperator = e.key;
+                displayHistory(firstNum,currentOperator,secondNum);
+                resetDisplay();  /*clean screen for next number before equal button */
+                
+        } else if(e.key === "Enter" || e.key == "=") {
+            evaluate();
+        }
+    });
 }
 
 function calculator() {  
@@ -120,6 +155,7 @@ function calculator() {
     displayInput.textContent = "0";
     
     numberBtns.forEach(btn => {
+
         btn.addEventListener("click", () => {
 
             if(equalBtn == true) { /* clean screen after clicking eqaul button for first number */
@@ -132,37 +168,31 @@ function calculator() {
             firstNum = displayInput.textContent;
             } else {
             secondNum = displayInput.textContent;
-            }  
-        });
+            }   
+    });
+      
     });
 
     operatorBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            if(firstNum != null){ 
-                if(secondNum != null) { /*evaulate when the operator is pressed*/
+
                 evaluate();
-                }                        /*clean screen for next number before equal button */
+                                     
                 currentOperator = btn.innerText.toString();  
                 displayHistory(firstNum,currentOperator,secondNum);
-                resetDisplay();
-            }             
-
+                resetDisplay();  /*clean screen for next number before equal button */
         });
     });
 
-    equalBtn.addEventListener("click", () => {
-
-        if(firstNum != null && currentOperator != null && secondNum != null){
-            evaluate();
-        }
-    })
-    
+    equalBtn.addEventListener("click", evaluate);
+   
     clearBtn.addEventListener("click", clear);
 
     backspaceBtn.addEventListener("click", deleteDigit);
 
     pointBtn.addEventListener("click", addPoint);
     
+    calculateUsingKeyboard();
 
 }
 
