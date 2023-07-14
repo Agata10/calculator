@@ -83,6 +83,10 @@ button {
     border-radius: 8px;
 }
 
+.button {
+    color: black;
+}
+
 .equal {
     background-color: #1c8d89f1;
 }
