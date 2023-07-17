@@ -18,13 +18,11 @@ Project is one of the task from [The Odin Project](https://www.theodinproject.co
 * JavaScript
 
 ## Screenshots
-![Wepage]
-![Wepage2]
-![Webpage3]
-
+![Wepage](./images/pic11.png)
+![Wepage2](/images/pic1.png)
 
 ## Link to game
-
+https://agata10.github.io/calculator/
 
 ## Setup
 
@@ -42,6 +40,8 @@ This project has 4 mathematical operations:
 3. multiply
 4. divide
 
-What is more, user can clear the output or delete unwanted or wrong value.
+What is more, user can clear the output or delete unwanted or wrong digits.
 Calculator has a display for input and for current math operation.
 User also can insert decimal numbers.
+When dividing by zero, there will show up an alert.
+
