@@ -91,16 +91,17 @@ function operate(firstNum,operator,secondNum) {
     switch (operator) {
         case "+":
             return add(firstNum,secondNum);    
-            break;
         case "-":
             return subtract(firstNum,secondNum);
-            break;
         case "*":
             return multiply(firstNum,secondNum);
-            break;
         case "/":
+            if(secondNum === 0){
+                secondNum = null;
+                alert("No dividing by zero!");
+                return "";
+            }
             return divide(firstNum,secondNum);
-            break;
     }
 }
 
