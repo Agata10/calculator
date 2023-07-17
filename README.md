@@ -40,8 +40,8 @@ This project has 4 mathematical operations:
 3. multiply
 4. divide
 
-What is more, user can clear the output or delete unwanted or wrong digits.
-Calculator has a display for input and for current math operation.
-User also can insert decimal numbers.
-When dividing by zero, there will show up an alert.
+What is more, user can clear the output or delete unwanted or wrong digits.<br />
+Calculator has a display for input and for current math operation.<br />
+User also can insert decimal numbers.<br />
+When dividing by zero, there will show up an alert.<br />
 
